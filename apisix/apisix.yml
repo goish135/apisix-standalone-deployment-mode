@@ -7,7 +7,6 @@ upstreams:
 routes:
   - name: "example-route"
     uri: /
-    method: GET
     upstream_id: 1
     plugins:
       key-auth: {}
@@ -16,4 +15,15 @@ consumers:
     plugins:
       key-auth:
         key: example-key
+      limit-count:
+        count: 2
+        time_window: 60
+        rejected_code: 503
+        key_type": "var_combination"
+        key": "$consumer_name $remote_addr"
+      api-breaker:
+        break_response_code: 502
+        break_response_body: "gw reply"
+        unhealthy.http_statuses: [500]
+        unhealthy.failures: 1      
 #END
