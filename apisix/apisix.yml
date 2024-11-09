@@ -9,12 +9,20 @@ routes:
     uri: /
     upstream_id: 1
     plugins:
-      key-auth: {}
+      # key-auth: {}
+      # basic-auth: {}
+      jwt-auth: {}
 consumers:
   - username: exampleuser
     plugins:
-      key-auth:
-        key: example-key
+      # key-auth:
+      #   key: example-key
+      # basic-auth:
+      #   username: "apisix"
+      #   password: "apisix"      
+      jwt-auth:
+        key: user-key
+        secret: secret-key
       limit-count:
         count: 2
         time_window: 60
