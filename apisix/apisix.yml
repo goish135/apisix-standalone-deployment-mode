@@ -10,6 +10,10 @@ routes:
     upstream_id: 1
     plugins:
       # key-auth: {}
+      basic-auth: { 
+        _meta: {
+            "disable": true
+        } }
       # basic-auth: {}
       jwt-auth: {}
 consumers:
@@ -19,7 +23,7 @@ consumers:
       #   key: example-key
       # basic-auth:
       #   username: "apisix"
-      #   password: "apisix"      
+      #   password: "apisix"
       jwt-auth:
         key: user-key
         secret: secret-key
